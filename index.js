@@ -10,7 +10,7 @@ app.use(cors());
 app.use(bodyParser.json());
   
 //create database connection
-const mysqlconnection = mysql.createConnection({
+const mysqlconnection = mysql.createPool({
 
     
     host : "sql.freedb.tech",   
@@ -21,7 +21,7 @@ const mysqlconnection = mysql.createConnection({
     connectionLimit: 20,
     multipleStatements:true
 });
-mysqlconnection.connect((err)=>{
+mysqlconnection.getConnection((err)=>{
     if(err){
         console.log('Not Connected',err);
     }
