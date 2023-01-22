@@ -32,7 +32,7 @@ mysqlconnection.getConnection((err)=>{
 });
 
 app.post('/store-data',(req, res) => {
-
+    console.log("value is ",Number(req.body.itching));
     let data = {case_person: req.body.case_person,case_email: req.body.case_email};
     let sql = "INSERT INTO patients_details SET ?";
     let query = mysqlconnection.query(sql, data,(err, results) => {
