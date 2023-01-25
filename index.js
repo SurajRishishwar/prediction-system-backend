@@ -187,7 +187,7 @@ app.post('/store-data',(req, res) => {
 
 
 app.get('/detailed-report/:id',(req, res) => {
-  console.log("value is :",req.params.id);
+
   
   let sql = "SELECT * FROM case_symptoms WHERE case_id = ?";
   let query = mysqlconnection.query(sql, req.params.id,(err, results) => {
@@ -200,7 +200,13 @@ app.get('/detailed-report/:id',(req, res) => {
     
 });
 
-
+app.get('/sending-email',(req, res) => {
+   
+    linkmail.userotpverification(req.body.case_email,req.body.otp,req.body.case_person);
+    res.send(JSON.stringify({"status": 200, "error": null, "response": "OTP Send"}));
+});
+  
+    
 
 
 app.listen(port, () => {
