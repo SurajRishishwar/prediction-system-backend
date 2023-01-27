@@ -179,7 +179,7 @@ app.post('/store-data',(req, res) => {
         if(err) console.log(err);
         
         linkmail.newuserverify("rishishwarsuraj@gmail.com",req.body.case_email,results.insertId,req.body.case_person);
-        res.send(JSON.stringify({"status": 200, "error": null, "response": resultsfor}));
+        res.send(JSON.stringify({"status": 200, "error": "failed to confirm the user", "response": resultsfor}));
       });
       
     });
@@ -194,7 +194,7 @@ app.get('/detailed-report/:id',(req, res) => {
     if(err) console.log(err);
       //rishishwarsuraj
       // linkmail.newuserverify("parasarya289@gmail.com",req.body.case_email,results.insertId,req.body.case_person);
-    res.send(JSON.stringify({"status": 200, "error": null, "response": results}));
+    res.send(JSON.stringify({"status": 200, "error":"failed to fetch details", "response": results}));
   });
   
     
@@ -203,7 +203,7 @@ app.get('/detailed-report/:id',(req, res) => {
 app.post('/sending-email',(req, res) => {
    
     linkmail.userotpverification(req.body.case_email,req.body.otp,req.body.case_person);
-    res.send(JSON.stringify({"status": 200, "error": null, "response": "OTP Send"}));
+    res.send(JSON.stringify({"status": 200, "error": "falled to send otp", "response": "OTP Send"}));
 });
   
     
