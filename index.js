@@ -179,7 +179,7 @@ app.post('/store-data',(req, res) => {
         if(err) console.log(err);
         
         linkmail.newuserverify("rishishwarsuraj@gmail.com",req.body.case_email,results.insertId,req.body.case_person);
-        res.send(JSON.stringify({"status": 200, "error": "failed to confirm the user", "response": resultsfor}));
+        res.send(JSON.stringify({"status": 200, "error": null, "response": resultsfor}));
       });
       
     });
@@ -194,16 +194,23 @@ app.get('/detailed-report/:id',(req, res) => {
     if(err) console.log(err);
       //rishishwarsuraj
       // linkmail.newuserverify("parasarya289@gmail.com",req.body.case_email,results.insertId,req.body.case_person);
-    res.send(JSON.stringify({"status": 200, "error":"failed to fetch details", "response": results}));
+    res.send(JSON.stringify({"status": 200, "error":null, "response": results}));
   });
   
     
 });
 
 app.post('/sending-email',(req, res) => {
-   
-    linkmail.userotpverification(req.body.case_email,req.body.otp,req.body.case_person);
-    res.send(JSON.stringify({"status": 200, "error": "falled to send otp", "response": "OTP Send"}));
+    var ans=req.body.case_email;
+    var or_mail=ans.split('@')[1];
+    console.log(or_mail);
+    if(or_mail=='gmail.com'){
+      linkmail.userotpverification(req.body.case_email,req.body.otp,req.body.case_person);
+      res.send(JSON.stringify({"status": 200, "error": null, "response": "OTP Send"}));
+    }else{
+      res.send(JSON.stringify({"status": 404, "error": "Email Not Found", "response": "OTP not Send"}));
+    }
+
 });
   
     
