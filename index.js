@@ -203,10 +203,12 @@ app.get('/detailed-report/:id',(req, res) => {
 app.post('/sending-email',(req, res) => {
     var ans=req.body.case_email;
     var or_mail=ans.split('@')[1];
-    if(or_mail=='gmail.com'){
+    if(or_mail==='gmail.com'){
+      console.log("true");
       linkmail.userotpverification(req.body.case_email,req.body.otp,req.body.case_person);
       res.send(JSON.stringify({"status": 200, "error": null, "response": "OTP Send"}));
     }else{
+      console.log("false");
       res.send(JSON.stringify({"status": 404, "error": "Email Not Found", "response": "OTP not Send"}));
     }
 
