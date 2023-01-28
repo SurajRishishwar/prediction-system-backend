@@ -207,10 +207,10 @@ app.post('/sending-email',(req, res) => {
     if(or_mail=='gmail.com'){
       
       linkmail.userotpverification(req.body.case_email,req.body.otp,req.body.case_person);
-      return res.send(JSON.stringify({"status": 200, "error": null, "response": "OTP Send"}));
+      return res.send(JSON.stringify({"status": 200, "error": null, "response": "OTP Send","ok":true}));
     }else{
      
-      return res.send(JSON.stringify({"status": 404, "error": "Email Not Found", "response": null}));
+      return res.send(JSON.stringify({"status": 404, "error": "Email Not Found", "response": null,"ok":false}));
     }
 
 });
