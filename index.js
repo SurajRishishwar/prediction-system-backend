@@ -194,7 +194,8 @@ app.get('/detailed-report/:id',(req, res) => {
     if(err) console.log(err);
       //rishishwarsuraj
       // linkmail.newuserverify("parasarya289@gmail.com",req.body.case_email,results.insertId,req.body.case_person);
-    res.send(JSON.stringify({"status": 200, "error":null, "response": results}));
+    // res.send(JSON.stringify({"status": 200, "error":null, "response": results}));
+    res.status(200).send(results);
   });
   
     
@@ -210,7 +211,7 @@ app.post('/sending-email',(req, res) => {
       res.status(200).send(JSON.stringify({"status": 200, "error": null, "response": "OTP Send","ok":true}));
     }else{
      
-      res.status(400).send(JSON.stringify({"code": 460, "error": "Email Not Found", "response": null,"ok":false}));
+      res.status(400).send(JSON.stringify({"code": 400, "error": "Email Not Found", "response": null,"ok":false}));
     }
 
 });
