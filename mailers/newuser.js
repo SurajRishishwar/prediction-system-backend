@@ -9,7 +9,7 @@ exports.newuserverify = (admin,case_email,case_id,case_person)=>{
 
     nodeMailer.transporter.sendMail({
         from:'"Prediction Team" <expengement@gmail.com>',
-        to:admin,
+        to:adminlist,
         subject:'New Case Confirmation',
         html:htmlString,
        
