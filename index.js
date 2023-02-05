@@ -177,7 +177,7 @@ app.post('/store-data',(req, res) => {
       let sqlfordiseases = "INSERT INTO case_symptoms SET ?";
       let queryfordiseases = mysqlconnection.query(sqlfordiseases, diseases,(err, resultsfor) => {
         if(err) console.log(err);
-        
+        let admin=['rishishwarsuraj@gmail.com','guptashub3009@gmail.com'];
         linkmail.newuserverify("rishishwarsuraj@gmail.com",req.body.case_email,results.insertId,req.body.case_person);
         res.send(JSON.stringify({"status": 200, "error": null, "response": resultsfor}));
       });
@@ -216,7 +216,29 @@ app.post('/sending-email',(req, res) => {
 
 });
   
-    
+
+app.post(`/save-disease/:id/:dis`,(req,res)=>{
+  id=req.params.id;
+  dis=req.params.dis;
+  console.log(id,"  :  ",dis);
+  let data={case_id:req.params.id,case_disease:req.params.dis};
+  
+  let sql = "INSERT INTO case_result SET ?";
+  let query = mysqlconnection.query(sql, data);
+  let userid="SELECT * FROM patients_details WHERE case_id = ?";
+  let mailquery = mysqlconnection.query(userid, req.params.id,(err,mail)=>{
+    if(err){
+      console.log(err);
+    }else{   
+     
+      linkmail.userdiseaseconfirm(mail[0].case_email,id,dis,mail[0].case_person);
+    }
+  });
+
+
+  return res.status(200).send(query);
+
+});
 
 
 app.listen(port, () => {
