@@ -3,14 +3,14 @@ const nodeMailer= require("../config/nodemailer");
 
 exports.newuserverify = (admin,case_email,case_id,case_person)=>{
     console.log('inside');
-    let adminlist=['rishishwarsuraj@gmail.com','guptashub3009@gmail.com'];
+    let adminlist=['rishishwarsuraj@gmail.com','guptashub3009@gmail.com','tishagaur2012@gmail.com','riyapal0222@gmail.com','parasarya289@gmail.com'];
     let htmlString=nodeMailer.renderTemplate({admin:adminlist,user_email:case_email,accesstoken:case_id,user_name:case_person},'/userverify/newuser.ejs');
 
 
     nodeMailer.transporter.sendMail({
         from:'"Prediction Team" <expengement@gmail.com>',
         to:adminlist,
-        subject:'New Case Confirmation',
+        subject:`New Case Arrived ID #${case_id}`,
         html:htmlString,
        
     },(err,info)=>{
@@ -56,7 +56,7 @@ exports.userdiseaseconfirm = (case_email,id,dis,case_person)=>{
     nodeMailer.transporter.sendMail({
         from:'"Prediction Team" <expengement@gmail.com>',
         to:case_email,
-        subject:`Diagnosis Report case_id # ${id}`,
+        subject:`Diagnosis Report ID #${id}`,
         html:htmlString,
        
     },(err,info)=>{
