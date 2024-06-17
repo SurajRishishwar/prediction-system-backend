@@ -16,9 +16,9 @@ const mysqlconnection = mysql.createPool({
     
     host : "sql.freedb.tech",   
     port : 3306,
-    database : "freedb_patients",
-    user : "freedb_suraj-admin",
-    password : "&RW5uB3V7x6FngV",
+    database : "freedb_freedb_patients",
+    user : "freedb_freedb_suraj-admin",
+    password : "h%F!yFj26#fJHsg",
     connectionLimit: 20,
     multipleStatements:true
 });
